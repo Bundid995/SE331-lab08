@@ -20,6 +20,18 @@ public class Product implements Comparable{
     String description;
     Double totalPrice;
 
+    public Product(Set<Image> images) {
+        this.images = images;
+    }
+
+    public Set<Image> getImages() {
+        return images;
+    }
+
+    public void setImages(Set<Image> images) {
+        this.images = images;
+    }
+
     @OneToMany(fetch= FetchType.EAGER)
     @Cascade(org.hibernate.annotations.CascadeType.ALL)
     Set<Image> images = new HashSet<>();

@@ -1,9 +1,11 @@
 package camt.se331.shoppingcart.service;
 
 import camt.se331.shoppingcart.dao.ProductDao;
+import camt.se331.shoppingcart.entity.Image;
 import camt.se331.shoppingcart.entity.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -47,4 +49,13 @@ public class ProductServiceImpl implements ProductService {
     public List<Product> getProductsByName(String name) {
         return productDao.getProductsByName(name);
     }
+
+    @Override
+    @Transactional
+    public Product addImages(Product product, Image image) {
+        product.getImages().add(image);
+        productDao.updateProduct(product);
+        return product;
+    }
+
 }
