@@ -9,12 +9,15 @@ import java.util.Date;
 
 @Entity
 public class Image {
-        public Long getId() {
-                return id;
+        public Image(String fileName, byte[] content, String contentType, Date created) {
+                this.fileName = fileName;
+                this.content = content;
+                this.contentType = contentType;
+                this.created = created;
         }
 
-        public void setId(Long id) {
-                this.id = id;
+        public Image() {
+
         }
 
         public String getFileName() {
@@ -49,17 +52,25 @@ public class Image {
                 this.created = created;
         }
 
+        public Long getId() {
+                return id;
+        }
+
+        public void setId(Long id) {
+                this.id = id;
+        }
+
         @Id
         @GeneratedValue
         private Long id;
 
-                String fileName;
+        String fileName;
         @Lob
         byte[] content;
         String contentType;
 
-                @Temporal(TemporalType.TIME)
-                Date created;
+        @Temporal(TemporalType.TIME)
+        Date created;
 
 
 }
